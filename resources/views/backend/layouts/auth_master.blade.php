@@ -20,6 +20,10 @@
 </head>
 
 <body class="account-pages">
+
+
+
+
 <!-- Begin page -->
 <div class="accountbg" style="background: url('{{ asset('backend/assets/images/bg-2.jpg') }}');background-size: cover;background-position: center;"></div>
 <div class="wrapper-page account-page-full">
@@ -31,13 +35,22 @@
 
                     @if(session()->get('success'))
 
-                        {{ session()->get('success') }}
+                        @if(session()->get('success'))
+
+                            <div class="alert alert-success">
+                                {{ session()->get('success') }}
+                            </div>
+
+                        @endif
 
                         @endif
 
                     @if(session()->get('error'))
 
-                        {{ session()->get('error') }}
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+
 
                         @endif
 

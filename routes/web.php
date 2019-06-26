@@ -32,7 +32,7 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
 
     });
 
-    Route::group([ 'middleware' => 'guard:admin' ], function (){
+    Route::group([ 'middleware' => 'auth:admin' ], function (){
 
         Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
         Route::get('/logout', 'DashboardController@logout')->name('admin.logout');

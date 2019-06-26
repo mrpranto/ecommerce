@@ -15,8 +15,17 @@
 
     <div class="container-fluid">
 
+        @if(session()->get('success'))
+
+        <div class="alert alert-success">
+           {{ session()->get('success') }}
+        </div>
+
+        @endif
+
         <div class="alert alert-dark">
-            This is Dashboard for {{ auth()->user()->role->name }}
+            This is Dashboard for
+            {{ auth()->user()->role->name }}
         </div>
 
     </div>

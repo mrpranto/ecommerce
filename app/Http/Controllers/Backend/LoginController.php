@@ -39,9 +39,8 @@ class LoginController extends Controller
 
         $credentials = $request->except('_token');
 
-        Auth::shouldUse('admin');
 
-        if (Auth::attempt($credentials)){
+        if (Auth::guard('admin')->attempt($credentials)){
 
             return redirect()->intended(route('admin.dashboard'))->with('success', 'Your Login Successful.');
 

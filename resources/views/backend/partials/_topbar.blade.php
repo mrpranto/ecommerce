@@ -90,7 +90,11 @@
 
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"><img src="{{ asset('backend/assets/images/users/avatar-2.jpg') }}" alt="user" class="rounded-circle"> <span class="ml-1">{{ auth()->user()->name }} <i class="mdi mdi-chevron-down"></i></span></a>
+                <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"><img src="{{ asset('backend/assets/images/users/avatar-2.jpg') }}" alt="user" class="rounded-circle"> <span class="ml-1">
+
+                        {{ auth()->user()->name }}
+
+                        <i class="mdi mdi-chevron-down"></i></span></a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
                     <!-- item-->
                     <div class="dropdown-item noti-title">
