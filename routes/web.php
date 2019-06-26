@@ -20,13 +20,10 @@ Route::group([ 'namespace' => 'Frontend' ], function (){
 });
 
 
-Route::group([ 'prefix' => 'admin' ], function (){
+Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
 
-    Route::get('/login', function (){
-
-        return view('backend.auth.login');
-
-    });
+    Route::get('/login', 'LoginController@index')->name('admin.login');
+    Route::post('/login', 'LoginController@processLogin')->name('admin.login');
 
 
     Route::get('/register', function (){
@@ -35,11 +32,14 @@ Route::group([ 'prefix' => 'admin' ], function (){
 
     });
 
-    Route::get('/dashboard', function (){
+    Route::group([ 'middleware' => 'guard:admin' ], function (){
 
-        return view('backend.layouts.master');
+        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/logout', 'DashboardController@logout')->name('admin.logout');
 
     });
+
+
 
 });
 

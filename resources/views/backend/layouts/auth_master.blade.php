@@ -29,6 +29,18 @@
                 <div class="card-box p-5">
                     <h2 class="text-uppercase text-center pb-4"><a href="index.html" class="text-success"><span><img src="{{ asset('backend/assets/images/logo.png') }}" alt="" height="26"></span></a></h2>
 
+                    @if(session()->get('success'))
+
+                        {{ session()->get('success') }}
+
+                        @endif
+
+                    @if(session()->get('error'))
+
+                        {{ session()->get('error') }}
+
+                        @endif
+
                     @yield('content')
 
                 </div>

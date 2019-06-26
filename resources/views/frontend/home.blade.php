@@ -17,11 +17,11 @@
 
     @include('frontend.partials._sliders')
 
-    {{--@include('frontend.partials._category_show')--}}
+    @include('frontend.partials._category_show')
 
     {{--@include('frontend.partials._deals')--}}
 
-    @include('frontend.partials._newProduct')
+    {{--@include('frontend.partials._newProduct')--}}
 
     {{--@include('frontend.partials._banner')--}}
 
