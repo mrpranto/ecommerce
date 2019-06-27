@@ -55,11 +55,7 @@
             </div>
         </div>
     </form>
-    <div class="row m-t-50">
-        <div class="col-sm-12 text-center">
-            <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-dark ml-1"><b>Sign Up</b></a></p>
-        </div>
-    </div>
+
 
 
 

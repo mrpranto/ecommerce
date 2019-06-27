@@ -26,16 +26,12 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
     Route::post('/login', 'LoginController@processLogin')->name('admin.login');
 
 
-    Route::get('/register', function (){
-
-        return view('backend.auth.register');
-
-    });
-
     Route::group([ 'middleware' => 'auth:admin' ], function (){
 
         Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
         Route::get('/logout', 'DashboardController@logout')->name('admin.logout');
+
+        Route::resource('category', 'CategoryController');
 
     });
 

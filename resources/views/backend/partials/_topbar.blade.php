@@ -118,7 +118,7 @@
             </li>
             <li>
                 <div class="page-title-box">
-                    <h4 class="page-title">@yield('title')</h4>
+                    <h4 class="page-title">@yield('page-title')</h4>
                 </div>
             </li>
         </ul>

@@ -9,20 +9,30 @@
         <div id="sidebar-menu">
             <ul class="metismenu" id="side-menu">
 
-                <li><a href="javascript: void(0);"><i class="fi-disc"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Forms</span></a>
+                <li><a href="javascript: void(0);"><i class="mdi mdi-brightness-5"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="form-elements.html">Form Elements</a></li>
-                        <li><a href="form-advanced.html">Form Advanced</a></li>
-                        <li><a href="form-validation.html">Form Validation</a></li>
-                        <li><a href="form-pickers.html">Form Pickers</a></li>
-                        <li><a href="form-wizard.html">Form Wizard</a></li>
-                        <li><a href="form-mask.html">Form Masks</a></li>
-                        <li><a href="form-summernote.html">Summernote</a></li>
-                        <li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
-                        <li><a href="form-x-editable.html">X Editable</a></li>
-                        <li><a href="form-uploads.html">Multiple File Upload</a></li>
+                        <li><a href="form-elements.html">Add New</a></li>
+                        <li><a href="form-advanced.html">Category List</a></li>
                     </ul>
                 </li>
+
+
+                <li><a href="javascript: void(0);"><i class=" mdi mdi-brightness-7"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Sub Category</span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="form-elements.html">Add New</a></li>
+                        <li><a href="form-advanced.html">Sub Category List</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="javascript: void(0);"><i class="mdi mdi-brightness-6"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Sub sub Category</span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="form-elements.html">Add New</a></li>
+                        <li><a href="form-advanced.html">Sub sub Category List</a></li>
+                    </ul>
+                </li>
+
+
 
             </ul>
         </div>
