@@ -11,16 +11,6 @@
 @section("content")
 
 
-
-    @auth()
-
-        pranto
-
-        <script> window.location = '{{ route('admin.dashboard') }}' ;</script>
-
-    @endauth
-
-
     <form class="" action="{{ route('admin.login') }}" method="post">
 
         @csrf

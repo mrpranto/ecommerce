@@ -6,12 +6,13 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-
-
+    public function __construct()
+    {
+        $this->middleware('guest:admin');
+    }
 
     public function index(){
 
