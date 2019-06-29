@@ -32,6 +32,7 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
         Route::get('/logout', 'DashboardController@logout')->name('admin.logout');
 
         Route::resource('category', 'CategoryController');
+        Route::resource('sub-category', 'SubCategoryController');
 
     });
 

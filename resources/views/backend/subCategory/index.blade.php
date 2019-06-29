@@ -1,11 +1,11 @@
 @extends("backend.layouts.master")
 
-    @section("title","Category List")
+    @section("title","Sub-Category List")
 
 
     @section("page-title")
 
-        <i class="mdi mdi-brightness-5"></i> Category List
+        <i class="mdi mdi-brightness-7"></i> Sub-Category List
 
     @endsection
 
@@ -37,7 +37,7 @@
                 <h4 class="title text-center">@yield('page-title')</h4>
 
                 <div class="card-tools" style="position:absolute;right:2rem;top:1.5rem;">
-                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary text-right"> <i class="fa fa-plus"></i> Add New</i></a>
+                    <a href="{{ route('sub-category.create') }}" class="btn btn-sm btn-primary text-right"> <i class="fa fa-plus"></i> Add New</i></a>
                 </div>
                 
                 <br>
@@ -54,8 +54,9 @@
                     <thead>
                     <tr>
                         <th>SL</th>
-                        <th>Category Name</th>
-                        <th>Category Image</th>
+                        <th>Sub-Category Name</th>
+                        <th>Parent Category</th>
+                        <th>Sub-Category Image</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -64,28 +65,28 @@
                     <tbody>
 
 
-                    @foreach($categories as $key => $category)
+                    @foreach($subCategories as $key => $subCategory)
 
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $category->category_name }}</td>
-                        <td><img src="{{ Storage::disk('public')->url('category/'.$category->category_banner) }}" alt="{{ $category->category_name }}" width="100px;"></td>
-                        <td>{{ Carbon\Carbon::parse($category->created_at)->format('F d, Y  h:i s A') }}</td>
-                        <td>{{ Carbon\Carbon::parse($category->updated_at)->format('F d, Y  h:i s A') }}</td>
-                        
+                        <td>{{ $subCategory->sub_category_name }}</td>
+                        <td><span class="badge badge-pill badge-primary">{{ $subCategory->category->category_name }}</span></td>
+                        <td><img src="{{ Storage::disk('public')->url('sub-category/'.$subCategory->sub_category_banner) }}" alt="{{ $subCategory->category_name }}" width="100px;"></td>
+                        <td>{{ Carbon\Carbon::parse($subCategory->created_at)->format('F d, Y  h:i s A') }}</td>
+                        <td>{{ Carbon\Carbon::parse($subCategory->updated_at)->format('F d, Y  h:i s A') }}</td>
                         
                         <td>
 
-                            <a href="{{ route('category.edit',$category->id) }}" class="btn btn-sm btn-info" class="btn btn-primary waves-effect waves-light" title="Edit">
+                            <a href="{{ route('sub-category.edit',$subCategory->id) }}" class="btn btn-sm btn-info" class="btn btn-primary waves-effect waves-light" title="Edit">
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>
 
-                            <button  class="btn btn-sm btn-danger" title="Delete" onclick="delete_category({{ $category->id }})">
+                            <button  class="btn btn-sm btn-danger" title="Delete" onclick="delete_sub_category({{ $subCategory->id }})">
                                 <i class="fa fa-trash-o"></i>
                             </button>
 
 
-                            <form id="category-delete-{{ $category->id }}" action="{{ route('category.destroy',$category->id) }}" method="post">
+                            <form id="sub-category-delete-{{ $subCategory->id }}" action="{{ route('sub-category.destroy',$subCategory->id) }}" method="post">
 
                                 @csrf
                                 @method('DELETE')
@@ -95,7 +96,7 @@
                         </td>
 
                         <script type="text/javascript">
-                            function delete_category(id) {
+                            function delete_sub_category(id) {
 
                                 Swal.fire({
                                     title: 'Are you sure?',
@@ -110,7 +111,7 @@
                                     if (result.value) {
 
                                         event.preventDefault();
-                                        document.getElementById('category-delete-'+id).submit();
+                                        document.getElementById('sub-category-delete-'+id).submit();
 
                                     }
                                 })

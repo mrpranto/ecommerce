@@ -202,20 +202,8 @@ class CategoryController extends Controller
         $category->updated_at = Carbon::now();
         $category->save();
 
-
-    
-
-       if ($category->save()) {
         
         return redirect()->route('category.index')->with('massage','Category Update Successfull !');
-
-       } else {
-        
-        return redirect()->back()->with('error','Somte thing is wrong !');
-        
-       }
-       
-       
 
 
     }
