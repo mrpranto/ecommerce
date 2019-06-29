@@ -12,13 +12,18 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
     <!-- App css -->
+
+    @yield('css')
+
+    
+    <link href="{{ asset('backend/plugins/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+
     <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/icons.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/metisMenu.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('backend/assets/js/modernizr.min.js') }}"></script>
 
-    @yield('css')
 
 </head>
 
@@ -62,11 +67,35 @@
 <script src="{{ asset('backend/assets/js/metisMenu.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/waves.js') }}"></script>
 <script src="{{ asset('backend/assets/js/jquery.slimscroll.js') }}"></script>
+
+
+
+@yield('scripts')
+
+
+<script src="{{ asset('backend/plugins/sweet-alert/sweetalert2.min.js') }}"></script>
 <!-- App js -->
 <script src="{{ asset('backend/assets/js/jquery.core.js') }}"></script>
 <script src="{{ asset('backend/assets/js/jquery.app.js') }}"></script>
 
-@yield('scripts')
+<script>
+  $(document).ready(function() {
+
+    @if(Session::get('massage'))
+
+        Swal.fire({
+            title: "Success!",
+            text: "{{ Session::get('massage') }}",
+            type: "success",
+            timer: 3e3,
+        });
+
+    @endif
+
+   });
+
+
+</script>
 
 </body>
 <!-- Mirrored from coderthemes.com/highdmin/layouts/vertical/page-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2019 13:48:04 GMT -->
