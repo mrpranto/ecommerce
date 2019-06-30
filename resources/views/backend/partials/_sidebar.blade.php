@@ -9,7 +9,7 @@
         <div id="sidebar-menu">
             <ul class="metismenu" id="side-menu">
 
-                <li><a href="javascript: void(0);" @if (Request::is('admin/category/*/edit')) class="mm-active" @endif ><i class="mdi mdi-brightness-5"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Category::count() }}</span> <span>Category</span></a>
+                <li><a href="javascript: void(0);" @if (Request::is('admin/category/*/edit')) class="mm-active" @endif ><i class="mdi mdi-brightness-5"></i><span class="badge badge-info badge-pill float-right">{{ $categories->count() }}</span> <span>Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('category.create')}}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
                         <li @if (Request::is('admin/category/*/edit')) class="mm-active" @endif ><a href="{{route('category.index')}}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Category List</a></li>
@@ -17,7 +17,7 @@
                 </li>
 
 
-                <li><a href="javascript: void(0);" @if (Request::is('admin/sub-category/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-brightness-7"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Sub Category</span></a>
+                <li><a href="javascript: void(0);" @if (Request::is('admin/sub-category/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-brightness-7"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\SubCategory::count() }}</span> <span>Sub Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{ route('sub-category.create') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
                         <li @if (Request::is('admin/sub-category/*/edit')) class="mm-active" @endif ><a href="{{ route('sub-category.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Sub Category List</a></li>
@@ -25,10 +25,10 @@
                 </li>
 
 
-                <li><a href="javascript: void(0);"><i class="mdi mdi-brightness-6"></i><span class="badge badge-info badge-pill float-right">10</span> <span>Sub sub Category</span></a>
+                <li><a href="javascript: void(0);" @if (Request::is('admin/sub-sub-category/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-brightness-8"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Sub_sub_category::count() }}</span> <span>Sub Sub Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="form-elements.html">Add New</a></li>
-                        <li><a href="form-advanced.html">Sub sub Category List</a></li>
+                        <li><a href="{{ route('sub-sub-category.create') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
+                        <li @if (Request::is('admin/sub-sub-category/*/edit')) class="mm-active" @endif ><a href="{{ route('sub-sub-category.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Sub Sub Categories</a></li>
                     </ul>
                 </li>
 

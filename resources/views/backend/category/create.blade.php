@@ -28,9 +28,7 @@
                 <h4 class="title text-center">@yield('page-title')</h4>
                 
                 <div class="card-tools" style="position:absolute;right:2rem;top:1.5rem;">
-                    <a href="{{ route('category.index') }}" class="btn btn-info btn-sm">
-                        <i class="fa fa-list-alt"></i> Category List
-                    </a>
+                    
                 </div>
                 <br>
 
@@ -108,7 +106,10 @@
                                 <button type="reset" class="btn btn-dark btn-sm">
                                     <i class="fa fa-refresh"></i> Reset
                                 </button>
-
+                                
+                                <a href="{{ route('category.index') }}" class="btn btn-info btn-sm">
+                                    <i class="fa fa-list-alt"></i> Category List
+                                </a>
                             
                             </div>
                         </div>

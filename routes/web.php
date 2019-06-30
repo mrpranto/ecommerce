@@ -33,6 +33,7 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
 
         Route::resource('category', 'CategoryController');
         Route::resource('sub-category', 'SubCategoryController');
+        Route::resource('sub-sub-category', 'Sub_subCategoryController');
 
     });
 

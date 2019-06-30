@@ -47,9 +47,11 @@ class SubCategoryController extends Controller
         $this->validate($request,[
 
             'sub_category_name' => 'required|unique:sub_categories,sub_category_name|max:100',
-            'category' => 'required',
+            'category_id' => 'required',
             'sub_category_banner' => 'required|image|max:1024',
 
+        ],[
+            'category_id.required' => 'Category Field is required.',
         ]);
 
         $image = $request->file('sub_category_banner');
@@ -68,13 +70,6 @@ class SubCategoryController extends Controller
             Storage::disk('public')->put('sub-category/'.$imageName,$category_image);
 
 
-            if (!Storage::disk('public')->exists('sub-category/banner/')) {
-                Storage::disk('public')->makeDirectory('sub-category/banner/');
-            }
-
-            $banner = Image::make($image)->resize(208,158)->save( $imageName,90);
-            Storage::disk('public')->put('sub-category/banner/'.$imageName,$banner);
-
 
         }else{
 
@@ -85,7 +80,7 @@ class SubCategoryController extends Controller
 
         $subCategory = SubCategory::insert([
 
-            'category_id'         => $request->category,
+            'category_id'         => $request->category_id,
             'sub_category_name'   => $request->sub_category_name,
             'slug'                => $slug,
             'sub_category_banner' => $imageName,
@@ -150,9 +145,11 @@ class SubCategoryController extends Controller
         $this->validate($request,[
 
             'sub_category_name' => 'unique:sub_categories,sub_category_name,'.$id.'|max:100',
-            'category' => 'required',
+            'category_id' => 'required',
             'sub_category_banner' => 'image|max:1024',
 
+        ],[
+            'category_id.required' => 'Category Field is required.',
         ]);
 
         $image = $request->file('sub_category_banner');
@@ -176,16 +173,6 @@ class SubCategoryController extends Controller
             Storage::disk('public')->put('sub-category/'.$imageName,$category_image);
 
 
-            if (!Storage::disk('public')->exists('sub-category/banner/')) {
-                Storage::disk('public')->makeDirectory('sub-category/banner/');
-            }
-
-            if (Storage::disk('public')->exists('sub-category/banner/'.$subCategory->sub_category_banner)) {
-                Storage::disk('public')->delete('sub-category/banner/'.$subCategory->sub_category_banner);
-            }
-
-            $banner = Image::make($image)->resize(208,158)->save( $imageName,90);
-            Storage::disk('public')->put('sub-category/banner/'.$imageName,$banner);
 
 
         }else{
@@ -194,7 +181,7 @@ class SubCategoryController extends Controller
 
         }
 
-        $subCategory->category_id = $request->category;
+        $subCategory->category_id = $request->category_id;
         $subCategory->sub_category_name = $request->sub_category_name;
         $subCategory->sub_category_banner = $imageName;
         $subCategory->updated_at =  Carbon::now();
@@ -218,8 +205,6 @@ class SubCategoryController extends Controller
 
         if (Storage::disk('public')->exists('sub-category/'.$subCategory->sub_category_banner)) {
             Storage::disk('public')->delete('sub-category/'.$subCategory->sub_category_banner);
-        }elseif (Storage::disk('public')->exists('sub-category/banner/'.$subCategory->sub_category_banner)) {
-            Storage::disk('public')->delete('sub-category/banner/'.$subCategory->sub_category_banner);
         }
 
         $subCategory->delete();

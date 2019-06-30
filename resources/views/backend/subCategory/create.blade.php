@@ -28,9 +28,7 @@
                 <h4 class="title text-center">@yield('page-title')</h4>
                 
                 <div class="card-tools" style="position:absolute;right:2rem;top:1.5rem;">
-                    <a href="{{ route('sub-category.index') }}" class="btn btn-info btn-sm">
-                        <i class="fa fa-list-alt"></i> Sub Category List
-                    </a>
+                   
                 </div>
                 <br>
 
@@ -70,11 +68,11 @@
 
                         
                         <div class="form-group row">
-                            <label for="category" class="col-4 col-form-label">Category <sup class="text-danger">*</sup></label>
+                            <label for="category_id" class="col-4 col-form-label">Category <sup class="text-danger">*</sup></label>
                             <div class="col-8">
                 
-                                  <select class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" name="category" id="category">
-                                    <option>- Select Category -</option>
+                                  <select class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" id="category_id">
+                                    <option value="">- Select Category -</option>
                                 
                                         @foreach ($categories as $category)
 
@@ -85,9 +83,9 @@
                                   </select>
                                 
 
-                                @if ($errors->has('category'))
+                                @if ($errors->has('category_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                                 @endif
                             
@@ -138,7 +136,10 @@
                                     <i class="fa fa-refresh"></i> Reset
                                 </button>
 
-                            
+                                <a href="{{ route('sub-category.index') }}" class="btn btn-info btn-sm">
+                                    <i class="fa fa-list-alt"></i> Sub Category List
+                                </a>
+                                
                             </div>
                         </div>
 
