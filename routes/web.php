@@ -28,13 +28,14 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
 
     Route::group([ 'middleware' => 'auth:admin' ], function (){
 
-        Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
         Route::get('/logout', 'DashboardController@logout')->name('admin.logout');
 
         Route::resource('category', 'CategoryController');
         Route::resource('sub-category', 'SubCategoryController');
         Route::resource('sub-sub-category', 'Sub_subCategoryController');
         Route::resource('brand', 'BrandController');
+        Route::resource('product', 'ProductController');
 
     });
 

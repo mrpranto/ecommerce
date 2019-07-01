@@ -41,6 +41,14 @@
                 </li>
 
 
+                <li><a href="javascript: void(0);" @if (Request::is('admin/product/*/edit')) class="mm-active" @endif ><i class=" fa fa-cart-plus"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Brand::count() }}</span> <span>Product</span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('product.create') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
+                        <li @if (Request::is('admin/product/*/edit')) class="mm-active" @endif ><a href="{{ route('product.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Product List</a></li>
+                    </ul>
+                </li>
+
+
 
             </ul>
         </div>
