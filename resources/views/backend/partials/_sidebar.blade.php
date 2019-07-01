@@ -25,10 +25,18 @@
                 </li>
 
 
-                <li><a href="javascript: void(0);" @if (Request::is('admin/sub-sub-category/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-brightness-8"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Sub_sub_category::count() }}</span> <span>Sub Sub Category</span></a>
+                <li><a href="javascript: void(0);" @if (Request::is('admin/sub-sub-category/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-brightness-6"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Sub_sub_category::count() }}</span> <span>Sub Sub Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{ route('sub-sub-category.create') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
                         <li @if (Request::is('admin/sub-sub-category/*/edit')) class="mm-active" @endif ><a href="{{ route('sub-sub-category.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Sub Sub Categories</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="javascript: void(0);" @if (Request::is('admin/brand/*/edit')) class="mm-active" @endif ><i class=" mdi mdi-wall"></i><span class="badge badge-info badge-pill float-right">{{ App\Models\Brand::count() }}</span> <span>Brand</span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('brand.create') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
+                        <li @if (Request::is('admin/brand/*/edit')) class="mm-active" @endif ><a href="{{ route('brand.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Brand List</a></li>
                     </ul>
                 </li>
 

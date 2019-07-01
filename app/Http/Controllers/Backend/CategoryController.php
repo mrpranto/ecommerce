@@ -6,8 +6,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Mockery\CountValidator\Exception;
-use Illuminate\Validation\Rules\Unique;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
