@@ -37,7 +37,7 @@
                 <h4 class="title text-center">@yield('page-title')</h4>
 
                 <div class="card-tools" style="position:absolute;right:2rem;top:1.5rem;">
-                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary text-right"> <i class="fa fa-plus"></i> Add New</i></a>
+                    <a href="{{ route('brand.create') }}" class="btn btn-sm btn-primary text-right"> <i class="fa fa-plus"></i> Add New</i></a>
                 </div>
                 
                 <br>
