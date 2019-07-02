@@ -13,6 +13,9 @@
 
 <link href="{{  asset('backend/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet">
 
+<link href="{{ asset('backend/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet">
+<link href="{{ asset('backend/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css">
+
 <style type="text/css">.thumb-image{float:left;width:100px;position:relative;padding:5px;border: 1px solid #ededed;margin: 10px;}</style>
 
 @endsection
@@ -209,10 +212,12 @@
                             <label for="color" class="col-3 col-form-label">Color <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                    <select id="color" class="form-control{{ $errors->has('color') ? ' is-invalid' : '' }}" name="color">
-                                        <option value="">- Select Color -</option>
-                                        <option value=""></option>
-                                    </select>
+                                <select class="selectpicker" name="color" multiple="multiple" data-style="btn-light">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                    <option>fsRelish</option>
+                                </select>
                                 
 
                                 @if ($errors->has('color'))
@@ -230,11 +235,15 @@
                             <label for="size" class="col-3 col-form-label">Size <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                    <select id="size" class="form-control{{ $errors->has('size') ? ' is-invalid' : '' }}" name="size">
-                                        <option value="">- Select Size -</option>
-                                        <option value=""></option>
+                                    <select class="selectpicker" name="size" multiple="multiple" data-style="btn-light">
+                                        <option>Mustard</option>
+                                        <option>Ketchup</option>
+                                        <option>Relish</option>
+                                        <option>fsRelish</option>
+                                        <option>saKetchup</option>
                                     </select>
-                                
+
+
 
                                 @if ($errors->has('size'))
                                     <span class="invalid-feedback" role="alert">
@@ -375,6 +384,9 @@
 </script>
 
 <script src="{{  asset('backend/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+
 
 <script>
     $(document).ready(function() {
