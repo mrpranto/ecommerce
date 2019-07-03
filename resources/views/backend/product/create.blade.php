@@ -77,9 +77,14 @@
                             <label for="category" class="col-3 col-form-label">Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" name="category">
+                                    <select id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" onchange="get_sub_cat();" name="category">
                                         <option value="">- Select Category -</option>
-                                        <option value=""></option>
+                                        
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+
+                                        
                                     </select>
                                 
 
@@ -100,9 +105,15 @@
                             <label for="sub_category" class="col-3 col-form-label">Sub Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category') ? ' is-invalid' : '' }}" name="sub_category">
+                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category') ? ' is-invalid' : '' }}" onchange="get_sub_sub_cat();" name="sub_category">
+                                        
                                         <option value="">- Select Sub Category -</option>
-                                        <option value=""></option>
+
+                                        {{-- @foreach ($subcategories as $subcategory)
+                                            <option value="{{ $subcategory->id }}">{{ $subcategory->sub_category_name }}</option>
+                                        @endforeach --}}
+
+                                        
                                     </select>
                                 
 
@@ -123,8 +134,13 @@
                             <div class="col-6">
                                 
                                     <select id="sub_sub_category" class="form-control{{ $errors->has('sub_sub_category') ? ' is-invalid' : '' }}" name="sub_sub_category">
-                                        <option value="">- Select Sub Category -</option>
-                                        <option value=""></option>
+                                        <option value="">- Select Sub Sub-Category -</option>
+
+                                        {{-- @foreach ($sub_sub_categories as $sub_sub_category)
+                                            <option value="{{ $sub_sub_category->id }}">{{ $sub_sub_category->sub_sub_category_name }}</option>
+                                        @endforeach --}}
+
+                                        
                                     </select>
                                 
 
@@ -213,10 +229,11 @@
                             <div class="col-4">
                                 
                                 <select class="selectpicker" name="color" multiple="multiple" data-style="btn-light">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
-                                    <option>fsRelish</option>
+
+                                    @foreach ($colors as $color)
+                                        <option value="{{ $color->id }}">{{ $color->color_name }}</option>
+                                    @endforeach
+
                                 </select>
                                 
 
@@ -236,11 +253,11 @@
                             <div class="col-4">
                                 
                                     <select class="selectpicker" name="size" multiple="multiple" data-style="btn-light">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
-                                        <option>fsRelish</option>
-                                        <option>saKetchup</option>
+                                        
+                                        @foreach ($sizes as $size)
+                                            <option value="{{ $size->id }}">{{ $size->size }}</option>
+                                        @endforeach
+
                                     </select>
 
 
@@ -306,10 +323,10 @@
 
 
                         <div class="form-group row">
-                            <label for="product_image" class="col-3 col-form-label">Product Images <sup class="text-danger">*</sup></label>
+                            <label for="fileUpload" class="col-3 col-form-label">Product Images <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                <input class="form-control{{ $errors->has('product_image') ? ' is-invalid' : '' }}" id="fileUpload" multiple="multiple" type="file" name="product_image" />
+                                <input class="{{ $errors->has('product_image') ? ' is-invalid' : '' }}" id="fileUpload" multiple="multiple" type="file" name="product_image" />
 
                                 @if ($errors->has('product_image'))
                                     <span class="invalid-feedback" role="alert">
@@ -376,6 +393,20 @@
 @section("scripts")
 
 <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+
+<script src="{{  asset('backend/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+
+<script type="text/javascript">
+
+      
+       
+</script>
+
+
+
+
 <script>
         CKEDITOR.replace( 'short_description' );
 </script>
@@ -383,12 +414,51 @@
         CKEDITOR.replace( 'long_description' );
 </script>
 
-<script src="{{  asset('backend/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
-<script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
-<script src="{{ asset('backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+<script type="text/javascript">
+    function get_sub_cat(){
+              var id=document.getElementById("category").value;
+            //   alert(id);
+              
+              $.ajax({
+              url  : "{{ route('admin.product.sub-Categoires') }}",
+              type : "get",
+              data : {id:id},
+              success : function(response){
+                //   alert(response);
+               $('#sub_category').html(response);
+
+                },
+                error : function(xhr, status){
+                  alert('There is some error.Try after some time.');
+                }
+            });
+            
+    }
+
+    function get_sub_sub_cat(){
+              var id=document.getElementById("sub_category").value;
+            //   alert(id);
+              
+              $.ajax({
+              url  : "{{ route('admin.product.sub-sub-Categoires') }}",
+              type : "get",
+              data : {id:id},
+              success : function(response){
+                //   alert(response);
+               $('#sub_sub_category').html(response);
+
+                },
+                error : function(xhr, status){
+                  alert('There is some error.Try after some time.');
+                }
+            });
+            
+    }
+</script>
 
 
-<script>
+<script type="text/javascript">
+
     $(document).ready(function() {
             $("#fileUpload").on('change', function() {
               //Get count of selected files
