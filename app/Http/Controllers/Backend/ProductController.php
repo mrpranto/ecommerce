@@ -10,6 +10,7 @@ use App\Models\Sub_sub_Category;
 use App\Models\Color;
 use App\Models\Size;
 use Illuminate\Support\Facades\Input;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
@@ -34,6 +35,7 @@ class ProductController extends Controller
         $data['categories'] = Category::orderBy('id','desc')->get();
         $data['subcategories'] = SubCategory::orderBy('id','desc')->get();
         $data['sub_sub_categories'] = Sub_sub_Category::orderBy('id','desc')->get();
+        $data['brands'] = Brand::orderBy('id','desc')->get();
         $data['colors'] = Color::all();
         $data['sizes'] = Size::all();
 
@@ -49,9 +51,7 @@ class ProductController extends Controller
 
     public function getSubCategory(){
         $id = Input::get('id');
-        // echo $id;
-        // echo "hello";
-        // exit();
+    
         $sub_category = SubCategory::where('category_id',$id)->get();
         echo '<option value="">' . '- Select Sub Category -' . '</option>';
         foreach ($sub_category as $value) {
@@ -61,9 +61,6 @@ class ProductController extends Controller
 
     public function getSub_subCategory(){
         $id = Input::get('id');
-        // echo $id;
-        // echo "hello";
-        // exit();
         $sub_sub_category = Sub_sub_Category::where('sub_category_id',$id)->get();
         echo '<option value="">' . '- Select Sub Sub-Category -' . '</option>';
         foreach ($sub_sub_category as $value) {
@@ -81,7 +78,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'product_name' => 'required|max:255|unique:products,product_name',
+            'category_id'  => 'required',
+            'sub_category_id'  => 'required',
+            'sub_sub_category_id'  => 'required',
+            ''
+        ],[
+
+            'category_id.required' => 'Categpory field is required',
+            'sub_category_id.required' => 'Sub Categpory field is required',
+            'sub_sub_category_id.required' => 'Sub Sub-Categpory field is required',
+
+        ]);
+
+
+
+
+
     }
 
     /**

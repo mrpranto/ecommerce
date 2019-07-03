@@ -56,8 +56,8 @@
                         <th>SL</th>
                         <th>Brand Name</th>
                         <th>Brand Logo</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th style="width:13%">Created At</th>
+                        <th style="width:13%">Updated At</th>
                         <th>Action</th>
                     </tr>
                     </thead>

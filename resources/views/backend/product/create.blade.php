@@ -77,7 +77,7 @@
                             <label for="category" class="col-3 col-form-label">Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" onchange="get_sub_cat();" name="category">
+                                    <select id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" onchange="get_sub_cat();" name="category_id">
                                         <option value="">- Select Category -</option>
                                         
                                         @foreach ($categories as $category)
@@ -105,7 +105,7 @@
                             <label for="sub_category" class="col-3 col-form-label">Sub Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category') ? ' is-invalid' : '' }}" onchange="get_sub_sub_cat();" name="sub_category">
+                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category') ? ' is-invalid' : '' }}" onchange="get_sub_sub_cat();" name="sub_category_id">
                                         
                                         <option value="">- Select Sub Category -</option>
 
@@ -133,7 +133,7 @@
                             <label for="sub_sub_category" class="col-3 col-form-label">Sub Sub-Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="sub_sub_category" class="form-control{{ $errors->has('sub_sub_category') ? ' is-invalid' : '' }}" name="sub_sub_category">
+                                    <select id="sub_sub_category" class="form-control{{ $errors->has('sub_sub_category') ? ' is-invalid' : '' }}" name="sub_sub_category_id">
                                         <option value="">- Select Sub Sub-Category -</option>
 
                                         {{-- @foreach ($sub_sub_categories as $sub_sub_category)
@@ -153,6 +153,32 @@
                             </div>
                         </div>
 
+
+                        
+                        
+                        <div class="form-group row">
+                                <label for="brand" class="col-3 col-form-label"> Brand <sup class="text-danger">*</sup></label>
+                                <div class="col-6">
+                                    
+                                        <select id="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" name="brand">
+                                            <option value="">- Select Brands -</option>
+    
+                                            @foreach ($brands as $brands)
+                                                <option value="{{ $brands->id }}">{{ $brands->brand_name }}</option>
+                                            @endforeach
+    
+                                            
+                                        </select>
+                                    
+    
+                                    @if ($errors->has('brand'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('brand') }}</strong>
+                                        </span>
+                                    @endif
+                                
+                                </div>
+                            </div>
 
 
 
@@ -222,6 +248,23 @@
 
                         </div>
 
+
+
+                        <div class="form-group row">
+                            <label for="sku" class="col-3 col-form-label">S.K.U <sup class="text-danger">*</sup></label>
+                            <div class="col-4">
+                                
+                                <input type="text" id="sku" class="form-control{{ $errors->has('sku') ? ' is-invalid' : '' }}" name="sku">
+                                
+
+                                @if ($errors->has('color'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('color') }}</strong>
+                                    </span>
+                                @endif
+                            
+                            </div>
+                        </div>
 
 
                         <div class="form-group row">
