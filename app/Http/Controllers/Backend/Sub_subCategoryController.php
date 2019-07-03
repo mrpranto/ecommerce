@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Models\SubCategory;
 use App\Models\Sub_sub_Category;
+use Illuminate\Support\Facades\Input;
 
 class Sub_subCategoryController extends Controller
 {
@@ -38,6 +39,18 @@ class Sub_subCategoryController extends Controller
         return view('backend.sub_subCategory.create',$data);
 
     }
+
+
+    public function getSubcategories(){
+        $id = Input::get('id');
+    
+        $sub_category = SubCategory::where('category_id',$id)->get();
+        echo '<option value="">' . '- Select Sub Category -' . '</option>';
+        foreach ($sub_category as $value) {
+            echo '<option value="' . $value->id . '">' . $value->sub_category_name . '</option>';
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.

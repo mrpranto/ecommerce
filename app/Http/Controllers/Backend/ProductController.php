@@ -78,17 +78,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        echo 'ok';
+
+        exit();
         $this->validate($request,[
             'product_name' => 'required|max:255|unique:products,product_name',
             'category_id'  => 'required',
             'sub_category_id'  => 'required',
             'sub_sub_category_id'  => 'required',
-            ''
+            'brand_id'  => 'required',
+            'sku'  => 'required|unique:products,sku',
+            'color'  => 'required',
+            'size'  => 'required',
+            'price'  => 'required|numeric',
+            'new_price'  => 'numeric',
+            'product_image'  => 'required|image|max:1024',
+            
         ],[
 
             'category_id.required' => 'Categpory field is required',
             'sub_category_id.required' => 'Sub Categpory field is required',
             'sub_sub_category_id.required' => 'Sub Sub-Categpory field is required',
+            'brand_id.required' => 'Sub Sub-Categpory field is required',
 
         ]);
 

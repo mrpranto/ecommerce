@@ -34,6 +34,8 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
         Route::resource('category', 'CategoryController');
         Route::resource('sub-category', 'SubCategoryController');
         Route::resource('sub-sub-category', 'Sub_subCategoryController');
+        Route::get('get-sub-category', 'Sub_subCategoryController@getSubcategories')->name('admin.sub-sub-category.sub-Categoires');
+
         Route::resource('brand', 'BrandController');
         Route::resource('product', 'ProductController');
 

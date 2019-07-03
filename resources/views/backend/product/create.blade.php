@@ -160,7 +160,7 @@
                                 <label for="brand" class="col-3 col-form-label"> Brand <sup class="text-danger">*</sup></label>
                                 <div class="col-6">
                                     
-                                        <select id="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" name="brand">
+                                        <select id="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" name="brand_id">
                                             <option value="">- Select Brands -</option>
     
                                             @foreach ($brands as $brands)

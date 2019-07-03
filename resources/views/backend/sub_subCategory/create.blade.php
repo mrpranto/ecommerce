@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label for="sub_sub_category_name" class="col-4 col-form-label">Sub Sub-Category Name <sup class="text-danger">*</sup></label>
                         <div class="col-8">
-                            <input type="text" class="form-control{{ $errors->has('sub_sub_category_name') ? ' is-invalid' : '' }}" id="sub_sub_category_name" name="sub_sub_category_name" value="{{ old('sub_category_name') }} " placeholder="Sub Sub Category Name">
+                            <input type="text" class="form-control{{ $errors->has('sub_sub_category_name') ? ' is-invalid' : '' }}" id="sub_sub_category_name" name="sub_sub_category_name" value="{{ old('sub_sub_category_name') }} " placeholder="Sub Sub Category Name">
                         
                             @if ($errors->has('sub_sub_category_name'))
                                 <span class="invalid-feedback" role="alert">
@@ -72,12 +72,12 @@
                         <label for="category_id" class="col-4 col-form-label">Category <sup class="text-danger">*</sup></label>
                         <div class="col-8">
             
-                              <select class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" id="category_id">
+                              <select class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" onchange="get_sub_cat()" id="category_id">
                                 <option value="">- Select Category -</option>
                             
                                     @foreach ($categories as $category)
 
-                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif>{{ $category->category_name }}</option>
 
                                     @endforeach                                    
 
@@ -105,7 +105,7 @@
                             
                                     @foreach ($subCategories as $subcategory)
 
-                                        <option value="{{ $subcategory->id }}">{{ $subcategory->sub_category_name }}</option>
+                                        <option value="{{ $subcategory->id }}"  @if(old('sub_category_id') == $subcategory->id) selected @endif>{{ $subcategory->sub_category_name }}</option>
 
                                     @endforeach                                    
 
@@ -193,6 +193,29 @@
 
 @section("scripts")
 
+  <script type="text/javascript">
+  
+     function get_sub_cat(){
+              var id=document.getElementById("category_id").value;
+            //   alert(id);
+              
+              $.ajax({
+              url  : "{{ route('admin.sub-sub-category.sub-Categoires') }}",
+              type : "get",
+              data : {id:id},
+              success : function(response){
+                //   alert(response);
+               $('#sub_category_id').html(response);
+
+                },
+                error : function(xhr, status){
+                  alert('There is some error.Try after some time.');
+                }
+            });
+            
+        }  
+
+  </script>
 
 <script type="text/javascript">
 
