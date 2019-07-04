@@ -40,11 +40,19 @@ class Product extends Model
 
     }
 
+    public function brand(){
+
+        return $this->belongsTo(Brand::class);
+
+    }
+
     public function product_images(){
 
         return $this->hasMany(ProductImage::class);
 
     }
+
+
 
     public function color(){
 

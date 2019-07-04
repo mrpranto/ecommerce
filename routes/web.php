@@ -32,15 +32,19 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
         Route::get('/logout', 'DashboardController@logout')->name('admin.logout');
 
         Route::resource('category', 'CategoryController');
+
         Route::resource('sub-category', 'SubCategoryController');
+
         Route::resource('sub-sub-category', 'Sub_subCategoryController');
         Route::get('get-sub-category', 'Sub_subCategoryController@getSubcategories')->name('admin.sub-sub-category.sub-Categoires');
 
         Route::resource('brand', 'BrandController');
-        Route::resource('product', 'ProductController');
 
+        Route::resource('product', 'ProductController');
         Route::get('sub-Categoires', 'ProductController@getSubCategory')->name('admin.product.sub-Categoires');
         Route::get('sub-sub-Categoires', 'ProductController@getSub_subCategory')->name('admin.product.sub-sub-Categoires');
+        Route::get('active/{id}', 'ProductController@published')->name('admin.product.published');
+        Route::get('deactive/{id}', 'ProductController@unpublished')->name('admin.product.un-published');
 
 
     });

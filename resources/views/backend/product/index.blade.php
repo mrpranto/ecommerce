@@ -21,7 +21,7 @@
         <!-- Multi Item Selection examples -->
         <link href="{{ asset('backend/plugins/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
 
-
+        <style type="text/css">.thumb-image{float:left;width:100px;position:relative;padding:5px;border: 1px solid #ededed;margin: 10px;}</style>
 
     @endsection
 
@@ -88,19 +88,19 @@
                             
                             @if($product->active == 0)
 
-                            <a href="{{ route('sub-sub-category.edit',$product->id) }}" class="btn btn-sm btn-success" title="Active">
+                            <a href="{{ route('admin.product.published',$product->id) }}" class="btn btn-sm btn-success" title="Active">
                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                             </a>
 
                             @else
 
-                            <a href="{{ route('sub-sub-category.edit',$product->id) }}" class="btn btn-sm btn-warning" title="Deactive">
+                            <a href="{{ route('admin.product.un-published',$product->id) }}" class="btn btn-sm btn-warning" title="Deactive">
                                <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                             </a>
 
                             @endif
 
-                            <a href="{{ route('sub-sub-category.edit',$product->id) }}" class="btn btn-sm btn-pink waves-effect waves-light" data-toggle="modal" data-target="#myModal"  title="View Details">
+                            <a href="" class="btn btn-sm btn-pink waves-effect waves-light" data-toggle="modal" data-target="#myModal{{ $product->id }}"  title="View Details">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
 
@@ -124,7 +124,7 @@
                         </td>
 
 
-                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div id="myModal{{ $product->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -148,6 +148,12 @@
                                             
                                             <dt class="col-sm-3">Sub Sub-Category</dt>
                                             <dd class="col-sm-9">: {{ $product->sub_sub_category->sub_sub_category_name }}</dd>
+                                            
+                                            
+                                            
+                                            
+                                            <dt class="col-sm-3">Brand</dt>
+                                            <dd class="col-sm-9">: {{ $product->brand->brand_name }}</dd>
                                             
                                             
                                             
@@ -213,6 +219,21 @@
                                             
                                             <dt class="col-sm-3">Status</dt>
                                             <dd class="col-sm-9">:  @if($product->active == 1) <span class="badge badge-pill badge-success">Activate</span> @else <span class="badge badge-pill badge-danger">Deactivate</span> @endif</dd>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <dt class="col-sm-3">Product Images</dt>
+                                            <dd class="col-sm-9"> 
+
+                                                @foreach ($product->product_images as $image)
+                                                    <img src="{{ Storage::disk('public')->url('product/'.$image->product_image) }}" class="thumb-image" alt="">
+                                                @endforeach
+
+                                                
+
+                                            </dd>
                                             
                                             
                                             

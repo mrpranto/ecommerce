@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id','desc')->get();
+        $products = Product::with('category','sub_category','sub_sub_category','color','brand','product_images')->orderBy('id','desc')->get();
         return view('backend.product.index',compact('products'));
     }
 
@@ -160,8 +160,6 @@ class ProductController extends Controller
         
                     $product_image = Image::make($image)->resize(370,370)->save( $imageName,90);
                     Storage::disk('public')->put('product/'.$imageName,$product_image);
-
-
                  
 
                 }else{
@@ -199,6 +197,36 @@ class ProductController extends Controller
 
 
     }
+
+
+    // Product Published Method
+
+    public function published($id){
+
+        $product = Product::find($id);
+        $product->active = 1;
+        $product->save();
+
+        return redirect()->back()->with('massage','Product Published Successfull !');
+        
+
+    }
+
+
+    // Product unpublished Method
+
+    public function unpublished($id){
+
+        $product = Product::find($id);
+        $product->active = 0;
+        $product->save();
+
+        return redirect()->back()->with('massage','Product Un-Published Successfull !');
+
+
+    }
+
+
 
     /**
      * Display the specified resource.
