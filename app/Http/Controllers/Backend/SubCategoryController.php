@@ -64,7 +64,7 @@ class SubCategoryController extends Controller
                 Storage::disk('public')->makeDirectory('sub-category');
             }
 
-            $category_image = Image::make($image)->resize(870,320)->save( $imageName,90);
+            $category_image = Image::make($image)->resize(870,320)->save();
             Storage::disk('public')->put('sub-category/'.$imageName,$category_image);
 
 

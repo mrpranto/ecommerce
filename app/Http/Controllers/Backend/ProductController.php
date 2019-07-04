@@ -11,6 +11,12 @@ use App\Models\Color;
 use App\Models\Size;
 use Illuminate\Support\Facades\Input;
 use App\Models\Brand;
+use App\Models\Product;
+use Carbon\Carbon;
+use App\Models\ProductImage;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class ProductController extends Controller
 {
@@ -21,7 +27,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('id','desc')->get();
+        return view('backend.product.index',compact('products'));
     }
 
     /**
@@ -78,9 +85,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        echo 'ok';
+       
 
-        exit();
         $this->validate($request,[
             'product_name' => 'required|max:255|unique:products,product_name',
             'category_id'  => 'required',
@@ -88,11 +94,11 @@ class ProductController extends Controller
             'sub_sub_category_id'  => 'required',
             'brand_id'  => 'required',
             'sku'  => 'required|unique:products,sku',
-            'color'  => 'required',
+            'color_id'  => 'required',
             'size'  => 'required',
             'price'  => 'required|numeric',
             'new_price'  => 'numeric',
-            'product_image'  => 'required|image|max:1024',
+            'product_image'  => 'required|max:1024',
             
         ],[
 
@@ -103,7 +109,92 @@ class ProductController extends Controller
 
         ]);
 
+        $slug =str_slug($request->product_name);
 
+        $data = [
+
+            'product_name' => $request->product_name,
+            'slug' => $slug,
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'sub_sub__category_id' => $request->sub_sub_category_id,
+            'brand_id' => $request->brand_id,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'tags' => $request->tags,
+            'sku' => $request->sku,
+            'color_id' => $request->color_id,
+            'size' => $request->size,
+            'price' => $request->price,
+            'new_price' => $request->new_price,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ];
+
+        $product_insert_id = Product::insertGetId($data);
+
+
+      
+
+            if ($request->product_image){
+                
+                $file = [];
+
+                foreach ($request->product_image as $key => $value) {
+                    
+            
+
+                $image = $request->file('product_image')[$key];
+        
+
+                if (isset($image)) {
+
+                    $currentDate = Carbon::now()->toDateString();
+                    $imageName = $slug . '_' . $currentDate . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+
+                    if (!Storage::disk('public')->exists('product')) {
+                        Storage::disk('public')->makeDirectory('product');
+                    }
+        
+                    $product_image = Image::make($image)->resize(370,370)->save( $imageName,90);
+                    Storage::disk('public')->put('product/'.$imageName,$product_image);
+
+
+                 
+
+                }else{
+
+                    $imageName = 'default.png';
+        
+                }
+
+
+                $file[] = [
+
+                    'product_id' =>$product_insert_id,
+                    'product_image' => $imageName,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+
+                ];
+
+                }
+
+
+                $product_image = new ProductImage();
+                $product_image::insert($file);
+
+            }
+
+
+
+
+          
+
+
+        return redirect()->back()->with('massage','Product Added Succesful !');
 
 
 

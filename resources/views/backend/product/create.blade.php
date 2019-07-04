@@ -77,20 +77,20 @@
                             <label for="category" class="col-3 col-form-label">Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}" onchange="get_sub_cat();" name="category_id">
+                                    <select id="category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" onchange="get_sub_cat();" name="category_id">
                                         <option value="">- Select Category -</option>
                                         
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif>{{ $category->category_name }}</option>
                                         @endforeach
 
                                         
                                     </select>
                                 
 
-                                @if ($errors->has('category'))
+                                @if ($errors->has('category_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                                 @endif
                             
@@ -105,21 +105,24 @@
                             <label for="sub_category" class="col-3 col-form-label">Sub Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category') ? ' is-invalid' : '' }}" onchange="get_sub_sub_cat();" name="sub_category_id">
+                                    <select id="sub_category" class="form-control{{ $errors->has('sub_category_id') ? ' is-invalid' : '' }}" onchange="get_sub_sub_cat();" name="sub_category_id">
                                         
                                         <option value="">- Select Sub Category -</option>
 
-                                        {{-- @foreach ($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->sub_category_name }}</option>
-                                        @endforeach --}}
+                                        @if (old('sub_category_id'))
 
+                                        @foreach ($subcategories as $subcategory)
+                                            <option @if(old('sub_category_id') == $subcategory->id) selected @endif  value="{{ $subcategory->id }}">{{ $subcategory->sub_category_name }}</option>
+                                        @endforeach
+
+                                        @endif
                                         
                                     </select>
                                 
 
-                                @if ($errors->has('sub_category'))
+                                @if ($errors->has('sub_category_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sub_category') }}</strong>
+                                        <strong>{{ $errors->first('sub_category_id') }}</strong>
                                     </span>
                                 @endif
                             
@@ -133,20 +136,24 @@
                             <label for="sub_sub_category" class="col-3 col-form-label">Sub Sub-Category <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                    <select id="sub_sub_category" class="form-control{{ $errors->has('sub_sub_category') ? ' is-invalid' : '' }}" name="sub_sub_category_id">
+                                    <select id="sub_sub_category" class="form-control{{ $errors->has('sub_sub_category_id') ? ' is-invalid' : '' }}" name="sub_sub_category_id">
                                         <option value="">- Select Sub Sub-Category -</option>
 
-                                        {{-- @foreach ($sub_sub_categories as $sub_sub_category)
-                                            <option value="{{ $sub_sub_category->id }}">{{ $sub_sub_category->sub_sub_category_name }}</option>
-                                        @endforeach --}}
+                                        @if (old('sub_sub_category_id'))
+
+                                            @foreach ($sub_sub_categories as $sub_sub_category)
+                                                <option @if(old('sub_sub_category_id') == $sub_sub_category->id) selected @endif value="{{ $sub_sub_category->id }}">{{ $sub_sub_category->sub_sub_category_name }}</option>
+                                            @endforeach
+
+                                        @endif
 
                                         
                                     </select>
                                 
 
-                                @if ($errors->has('sub_sub_category'))
+                                @if ($errors->has('sub_sub_category_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sub_sub_category') }}</strong>
+                                        <strong>{{ $errors->first('sub_sub_category_id') }}</strong>
                                     </span>
                                 @endif
                             
@@ -160,20 +167,20 @@
                                 <label for="brand" class="col-3 col-form-label"> Brand <sup class="text-danger">*</sup></label>
                                 <div class="col-6">
                                     
-                                        <select id="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" name="brand_id">
+                                        <select id="brand" class="form-control{{ $errors->has('brand_id') ? ' is-invalid' : '' }}" name="brand_id">
                                             <option value="">- Select Brands -</option>
     
                                             @foreach ($brands as $brands)
-                                                <option value="{{ $brands->id }}">{{ $brands->brand_name }}</option>
+                                                <option @if(old('brand_id') == $brands->id) selected @endif  value="{{ $brands->id }}">{{ $brands->brand_name }}</option>
                                             @endforeach
     
                                             
                                         </select>
                                     
     
-                                    @if ($errors->has('brand'))
+                                    @if ($errors->has('brand_id'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('brand') }}</strong>
+                                            <strong>{{ $errors->first('brand_id') }}</strong>
                                         </span>
                                     @endif
                                 
@@ -183,10 +190,10 @@
 
 
                         <div class="form-group row">
-                            <label for="short_description" class="col-3 col-form-label">Short Description <sup class="text-danger">*</sup></label>
+                            <label for="short_description" class="col-3 col-form-label">Short Description </label>
                             <div class="col-9">
                                 
-                                <textarea name="short_description"></textarea>
+                                <textarea name="short_description">{{ old('short_description') }}</textarea>
 
 
                                 @if ($errors->has('short_description'))
@@ -205,10 +212,10 @@
 
 
                         <div class="form-group row">
-                            <label for="long_description" class="col-3 col-form-label">Long Description <sup class="text-danger">*</sup></label>
+                            <label for="long_description" class="col-3 col-form-label">Long Description </label>
                             <div class="col-9">
                                 
-                                <textarea name="long_description"></textarea>
+                                <textarea name="long_description">{{ old('long_description') }}</textarea>
 
 
                                 @if ($errors->has('long_description'))
@@ -231,7 +238,7 @@
                             <div class="col-6">
                                 
                                 <div class="tags-default">
-                                    <input type="text" class="form-control" value="" data-role="tagsinput" placeholder="add tags">
+                                    <input type="text" class="form-control" name="tags" value="{{ old('tags') }}" data-role="tagsinput" placeholder="add tags">
                 
                                 </div>
 
@@ -254,12 +261,12 @@
                             <label for="sku" class="col-3 col-form-label">S.K.U <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                <input type="text" id="sku" class="form-control{{ $errors->has('sku') ? ' is-invalid' : '' }}" name="sku">
+                                <input type="text" id="sku" class="form-control{{ $errors->has('sku') ? ' is-invalid' : '' }}" value="{{ old('sku') }}" name="sku">
                                 
 
-                                @if ($errors->has('color'))
+                                @if ($errors->has('sku'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('color') }}</strong>
+                                        <strong>{{ $errors->first('sku') }}</strong>
                                     </span>
                                 @endif
                             
@@ -271,18 +278,19 @@
                             <label for="color" class="col-3 col-form-label">Color <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                <select class="selectpicker" name="color" multiple="multiple" data-style="btn-light">
+                                <select class="form-control{{ $errors->has('color_id') ? ' is-invalid' : '' }}" name="color_id" >
 
+                                    <option value="">- Select Color -</option>
                                     @foreach ($colors as $color)
-                                        <option value="{{ $color->id }}">{{ $color->color_name }}</option>
+                                        <option @if(old('color_id') == $color->id) selected @endif value="{{ $color->id }}">{{ $color->color_name }}</option>
                                     @endforeach
 
                                 </select>
                                 
 
-                                @if ($errors->has('color'))
+                                @if ($errors->has('color_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('color') }}</strong>
+                                        <strong>{{ $errors->first('color_id') }}</strong>
                                     </span>
                                 @endif
                             
@@ -295,10 +303,11 @@
                             <label for="size" class="col-3 col-form-label">Size <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                    <select class="selectpicker" name="size" multiple="multiple" data-style="btn-light">
+                                    <select class="form-control{{ $errors->has('size') ? ' is-invalid' : '' }}" name="size" >
                                         
+                                            <option value="">- Select Size -</option>
                                         @foreach ($sizes as $size)
-                                            <option value="{{ $size->id }}">{{ $size->size }}</option>
+                                            <option @if(old('size') == $size->size) selected @endif  value="{{ $size->size }}">{{ $size->size }}</option>
                                         @endforeach
 
                                     </select>
@@ -316,11 +325,36 @@
 
 
 
+                        {{-- <div class="form-group row">
+                            <label for="size" class="col-3 col-form-label">Size <sup class="text-danger">*</sup></label>
+                            <div class="col-4">
+                                
+                                    <select class="selectpicker{{ $errors->has('size') ? ' is-invalid' : '' }}" name="size" multiple="multiple" data-style="btn-light">
+                                        
+                                        @foreach ($sizes as $size)
+                                            <option value="{{ $size->id }}">{{ $size->size }}</option>
+                                        @endforeach
+
+                                    </select>
+
+
+
+                                @if ($errors->has('size'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('size') }}</strong>
+                                    </span>
+                                @endif
+                            
+                            </div>
+                        </div> --}}
+
+
+
                         <div class="form-group row">
                             <label for="price" class="col-3 col-form-label">Price <sup class="text-danger">*</sup></label>
                             <div class="col-4">
                                 
-                                    <input type="number" step="0.0" name="price" id="price" class="form-control" placeholder="0.00">
+                                    <input type="number" step="0.0" name="price" id="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" value="{{ old('price') }}" placeholder="0.00">
                                 
 
                                 @if ($errors->has('price'))
@@ -338,7 +372,7 @@
                             <label for="new_price" class="col-3 col-form-label">New Price</label>
                             <div class="col-4">
                                 
-                                <input type="number" step="0.0" name="new_price" id="new_price" class="form-control" placeholder="0.00">
+                                <input type="number" step="0.0" name="new_price" id="new_price" class="form-control" value="{{ old('new_price') }}" placeholder="0.00">
                                 
 
                                 @if ($errors->has('new_price'))
@@ -353,23 +387,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                         <div class="form-group row">
                             <label for="fileUpload" class="col-3 col-form-label">Product Images <sup class="text-danger">*</sup></label>
                             <div class="col-6">
                                 
-                                <input class="{{ $errors->has('product_image') ? ' is-invalid' : '' }}" id="fileUpload" multiple="multiple" type="file" name="product_image" />
+                                <input class="form-control{{ $errors->has('product_image') ? ' is-invalid' : '' }}" id="fileUpload" multiple="multiple" type="file" name="product_image[]" />
 
                                 @if ($errors->has('product_image'))
                                     <span class="invalid-feedback" role="alert">
