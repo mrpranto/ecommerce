@@ -60,10 +60,8 @@ class BrandController extends Controller
                 Storage::disk('public')->makeDirectory('brand');
             }
 
-            $brand_image = Image::make($image)->resize(170,93)->save( $imageName,90);
+            $brand_image = Image::make($image)->resize(170,93)->stream();
             Storage::disk('public')->put('brand/'.$imageName,$brand_image);
-
-
 
         }else{
 
@@ -162,9 +160,8 @@ class BrandController extends Controller
                 Storage::disk('public')->delete('brand/'.$brand->brand_logo);
             }
 
-            $brand_image = Image::make($image)->resize(170,93)->save( $imageName,90);
+            $brand_image = Image::make($image)->resize(170,93)->stream();
             Storage::disk('public')->put('brand/'.$imageName,$brand_image);
-
 
 
         }else{

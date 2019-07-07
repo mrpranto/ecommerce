@@ -9,6 +9,9 @@
         <div id="sidebar-menu">
             <ul class="metismenu" id="side-menu">
 
+                <li><a href="{{ route('admin.dashboard') }}" ><i class="mdi mdi-monitor"></i> <span>Dashboard</span></a></li>
+
+
                 <li><a href="javascript: void(0);" @if (Request::is('admin/category/*/edit')) class="mm-active" @endif ><i class="mdi mdi-brightness-5"></i><span class="badge badge-info badge-pill float-right">{{ $categories->count() }}</span> <span>Category</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('category.create')}}"> <i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>

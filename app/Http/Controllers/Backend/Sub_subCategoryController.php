@@ -84,7 +84,7 @@ class Sub_subCategoryController extends Controller
                 Storage::disk('public')->makeDirectory('sub-sub-category');
             }
 
-            $category_image = Image::make($image)->resize(870,320)->save( $imageName,90);
+            $category_image = Image::make($image)->resize(870,320)->stream();
             Storage::disk('public')->put('sub-sub-category/'.$imageName,$category_image);
 
 
@@ -192,7 +192,7 @@ class Sub_subCategoryController extends Controller
                 Storage::disk('public')->delete('sub-sub-category/'.$sub_sub_category->sub_sub_category_banner);
             }
 
-            $category_image = Image::make($image)->resize(870,320)->save( $imageName,90);
+            $category_image = Image::make($image)->resize(870,320)->stream();
             Storage::disk('public')->put('sub-sub-category/'.$imageName,$category_image);
 
 

@@ -61,7 +61,7 @@ class CategoryController extends Controller
                 Storage::disk('public')->makeDirectory('category');
             }
 
-            $category_image = Image::make($image)->resize(870,320)->save( $imageName,90);
+            $category_image = Image::make($image)->resize(870,320)->stream();
             Storage::disk('public')->put('category/'.$imageName,$category_image);
 
 
@@ -69,7 +69,7 @@ class CategoryController extends Controller
                 Storage::disk('public')->makeDirectory('category/banner/');
             }
 
-            $banner = Image::make($image)->resize(208,158)->save( $imageName,90);
+            $banner = Image::make($image)->resize(208,158)->stream();
             Storage::disk('public')->put('category/banner/'.$imageName,$banner);
 
 
@@ -170,7 +170,7 @@ class CategoryController extends Controller
 
             }
 
-            $category_image = Image::make($image)->resize(870,320)->save( $imageName,90);
+            $category_image = Image::make($image)->resize(870,320)->stream();
             Storage::disk('public')->put('category/'.$imageName,$category_image);
 
 
@@ -185,7 +185,7 @@ class CategoryController extends Controller
 
             }
 
-            $banner = Image::make($image)->resize(208,158)->save( $imageName,90);
+            $banner = Image::make($image)->resize(208,158)->stream();
             Storage::disk('public')->put('category/banner/'.$imageName,$banner);
 
 

@@ -77,8 +77,8 @@
                         <td><span class="badge badge-pill badge-primary">{{ $product->category->category_name }}</span></td>
                         <td><span class="badge badge-pill badge-primary">{{ $product->sub_category->sub_category_name }}</span></td>
                         <td><span class="badge badge-pill badge-primary">{{ $product->sub_sub_category->sub_sub_category_name }}</span></td>
-                        <td>{{ number_format($product->price) }}</td>
-                        <td>{{ number_format($product->new_price) }}</td>
+                        <td>{{ number_format($product->price) .' tk'}}</td>
+                        <td>{{ number_format($product->new_price) .' tk'}}</td>
                         <td> @if($product->active == 1) <span class="badge badge-pill badge-success">Activate</span> @else <span class="badge badge-pill badge-danger">Deactivate</span> @endif</td>
                         <td>{{ Carbon\Carbon::parse($product->created_at)->format('F d, Y  h:i s A') }}</td>
                         <td>{{ Carbon\Carbon::parse($product->updated_at)->format('F d, Y  h:i s A') }}</td>

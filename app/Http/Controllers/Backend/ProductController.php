@@ -158,7 +158,7 @@ class ProductController extends Controller
                         Storage::disk('public')->makeDirectory('product');
                     }
         
-                    $product_image = Image::make($image)->resize(370,370)->save( $imageName,90);
+                    $product_image = Image::make($image)->resize(370,370)->stream();
                     Storage::disk('public')->put('product/'.$imageName,$product_image);
                  
 
