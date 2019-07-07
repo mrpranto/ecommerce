@@ -105,7 +105,7 @@
                             </a>
 
 
-                            <a href="{{ route('sub-sub-category.edit',$product->id) }}" class="btn btn-sm btn-info"  title="Edit">
+                            <a href="{{ route('product.edit',$product->id) }}" class="btn btn-sm btn-info"  title="Edit">
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>
 
@@ -114,7 +114,7 @@
                             </button>
 
 
-                            <form id="sub-sub-category-delete-{{ $product->id }}" action="{{ route('sub-sub-category.destroy',$product->id) }}" method="post">
+                            <form id="product-delete-{{ $product->id }}" action="{{ route('product.destroy',$product->id) }}" method="post">
 
                                 @csrf
                                 @method('DELETE')

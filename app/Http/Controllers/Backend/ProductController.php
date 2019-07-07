@@ -247,8 +247,45 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        
+        $data = [];
+        $data['categories'] = Category::orderBy('id','desc')->get();
+        $data['subcategories'] = SubCategory::orderBy('id','desc')->get();
+        $data['sub_sub_categories'] = Sub_sub_Category::orderBy('id','desc')->get();
+        $data['brands'] = Brand::orderBy('id','desc')->get();
+        $data['colors'] = Color::all();
+        $data['sizes'] = Size::all();
+        $data['product'] = Product::find($id);
+
+        if(!isset($data['product']->id)){
+            return redirect()->route('product.index');
+        }
+
+        return view('backend.product.edit',$data);
+
     }
+
+
+
+    // Delete Product Image
+
+    public function delete_product_image($id)
+    {
+        
+        $product_image = ProductImage::find($id);
+
+        if (Storage::disk('public')->exists('product/'.$product_image->product_image)) {
+            Storage::disk('public')->delete('product/'.$product_image->product_image);
+        }
+
+        $product_image->delete();
+
+        return redirect()->back()->with('massage','Image Delete Successful .');
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.

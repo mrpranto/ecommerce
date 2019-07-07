@@ -45,6 +45,7 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Backend' ], function (){
         Route::get('sub-sub-Categoires', 'ProductController@getSub_subCategory')->name('admin.product.sub-sub-Categoires');
         Route::get('active/{id}', 'ProductController@published')->name('admin.product.published');
         Route::get('deactive/{id}', 'ProductController@unpublished')->name('admin.product.un-published');
+        Route::get('delete-product-image/{id}', 'ProductController@delete_product_image')->name('admin.product.delete-image');
 
 
     });
