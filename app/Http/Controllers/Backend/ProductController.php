@@ -307,6 +307,23 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $product = Product::find($id);
+       
+        foreach ($product->product_images as $image) {
+           
+            
+            if (Storage::disk('public')->exists('product/'.$image->product_image)) {
+                Storage::disk('public')->delete('product/'.$image->product_image);
+            }
+
+        }
+        
+        ProductImage::where('product_id',$id)->delete();
+        $product->delete();
+
+        return redirect()->back()->with('massage','Product Delete Successful .');
+         
+
     }
 }

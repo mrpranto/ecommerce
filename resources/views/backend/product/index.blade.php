@@ -109,7 +109,7 @@
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>
 
-                            <button  class="btn btn-sm btn-danger" title="Delete" onclick="delete_sub_sub_category({{ $product->id }})">
+                            <button  class="btn btn-sm btn-danger" title="Delete" onclick="delete_product({{ $product->id }})">
                                 <i class="fa fa-trash-o"></i>
                             </button>
 
@@ -266,7 +266,7 @@
 
 
                         <script type="text/javascript">
-                            function delete_sub_sub_category(id) {
+                            function delete_product(id) {
 
                                 Swal.fire({
                                     title: 'Are you sure?',
@@ -281,7 +281,7 @@
                                     if (result.value) {
 
                                         event.preventDefault();
-                                        document.getElementById('sub-sub-category-delete-'+id).submit();
+                                        document.getElementById('product-delete-'+id).submit();
 
                                     }
                                 })

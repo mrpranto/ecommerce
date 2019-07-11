@@ -427,7 +427,7 @@
                                         @foreach ($product->product_images as $image)
                                 
                                         <div class="col-sm-3">
-                                            <div class="file-man-box"><a href="{{ route('admin.product.delete-image',$image->id) }}" onclick="return confirm('Are you sure ?')" class="file-close"><i class="mdi mdi-close-circle"></i></a>
+                                            <div class="file-man-box"><a href="{{ route('admin.product.delete-image',$image->id) }}" onclick="return confirm('Are you sure ?')" title="Delete Image" class="file-close"><i class="mdi mdi-close-circle"></i></a>
                                                 <div class="file-img-box">
                                                     <img  src="{{ Storage::disk('public')->url('product/'.$image->product_image) }}" alt="{{ $image->product_images }}">
                                                 </div>
